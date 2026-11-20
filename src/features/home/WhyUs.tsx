@@ -19,12 +19,12 @@ export function WhyUs() {
         <Reveal stagger className="mt-14 grid gap-4 md:grid-cols-3 md:grid-rows-2">
           <div className="relative min-h-[22rem] overflow-hidden rounded-[2rem] bg-forest md:row-span-2">
             <Image
-              src="/images/team.webp"
+              src="/images/home-why-us-team.webp"
               alt="Our cleaning team planning a job"
               fill
               sizes="(min-width: 768px) 33vw, 100vw"
-              quality={60}
-              className="object-cover opacity-80"
+              quality={90}
+              className="object-cover object-center opacity-80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/40 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-7 text-center">

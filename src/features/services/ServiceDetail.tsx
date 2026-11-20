@@ -15,7 +15,7 @@ export function DetailMedia({ service }: { service: Service }) {
         alt={service.title}
         sizes="(min-width: 1280px) 1200px, 100vw"
         priority
-        className="mx-auto aspect-[4/3] max-w-6xl rounded-[2rem] shadow-[0_30px_80px_-40px_rgb(15_61_46/0.5)] sm:aspect-[21/9]"
+        className="mx-auto aspect-video max-w-6xl rounded-[2rem] shadow-[0_30px_80px_-40px_rgb(15_61_46/0.5)]"
       />
     </section>
   );
@@ -65,7 +65,12 @@ export function DetailCompare({ service }: { service: Service }) {
       <div className="container-site">
         <SectionHead kicker="Before & after" title="The difference, side by side" intro="Drag the squeegee across the photo." />
         <Reveal className="mx-auto mt-10 max-w-5xl">
-          <BeforeAfter src={service.image} alt={service.title} className="aspect-[4/3] rounded-[2rem] sm:aspect-[16/9]" />
+          <BeforeAfter
+            src={service.image}
+            {...(service.beforeImage ? { beforeSrc: service.beforeImage } : {})}
+            alt={service.title}
+            className="aspect-video rounded-[2rem]"
+          />
         </Reveal>
       </div>
     </section>

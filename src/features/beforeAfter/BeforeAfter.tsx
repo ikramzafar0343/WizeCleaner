@@ -90,13 +90,20 @@ export function BeforeAfter({
         fill
         sizes={sizes}
         priority={priority}
-        quality={75}
-        className="object-cover"
+        quality={90}
+        className="object-cover object-center"
       />
 
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         {beforeSrc ? (
-          <Image src={beforeSrc} alt={`${alt} — before cleaning`} fill sizes={sizes} quality={60} className="object-cover" />
+          <Image
+            src={beforeSrc}
+            alt={`${alt} — before cleaning`}
+            fill
+            sizes={sizes}
+            quality={90}
+            className="object-cover object-center"
+          />
         ) : (
           <>
             <Image
@@ -105,8 +112,8 @@ export function BeforeAfter({
               aria-hidden
               fill
               sizes={sizes}
-              quality={60}
-              className="object-cover [filter:sepia(0.5)_saturate(0.55)_brightness(0.78)_contrast(0.88)_blur(0.4px)]"
+              quality={90}
+              className="object-cover object-center [filter:sepia(0.5)_saturate(0.55)_brightness(0.78)_contrast(0.88)_blur(0.4px)]"
             />
             <Grime />
           </>

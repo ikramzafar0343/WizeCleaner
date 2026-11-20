@@ -16,7 +16,7 @@ export function ServiceRow({ service, index }: { service: Service; index: number
         src={service.image}
         alt={service.title}
         sizes="(min-width: 768px) 45vw, 100vw"
-        className={cn("aspect-[4/3] rounded-[1.5rem]", flip && "md:order-2")}
+        className={cn("aspect-video rounded-[1.5rem]", flip && "md:order-2")}
       />
       <Reveal stagger className="flex flex-col items-center px-3 pb-6 text-center md:px-8 md:pb-0">
         <span className="inline-flex items-center gap-2 rounded-full bg-mist px-3 py-1 text-sm text-muted">

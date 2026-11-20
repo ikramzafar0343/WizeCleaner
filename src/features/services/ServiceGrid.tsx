@@ -4,16 +4,16 @@ import { SectionHead } from "@/shared/ui/SectionHead";
 import { services } from "./data";
 import { ServiceCard } from "./ServiceCard";
 
-const FEATURED = new Set([1, 6]);
+const FEATURED = new Set([1, 16]); // 10 Marla deep clean + Floor Cleaning
 
 export function ServiceGrid({ showAllLink = true }: { showAllLink?: boolean }) {
   return (
-    <section className="section-y">
+    <section className="relative z-10 section-y">
       <div className="container-site">
         <SectionHead
           kicker="Services"
           title="Everything that needs a proper clean"
-          intro="Eight focused services, each done by a crew trained for that job."
+          intro={`${services.length} services for homes and workplaces — each done by a crew trained for that job.`}
         />
         <Reveal stagger as="ul" className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (

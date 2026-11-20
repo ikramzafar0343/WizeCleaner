@@ -42,10 +42,10 @@ export default function AboutPage() {
 
       <section className="container-site">
         <WipeImage
-          src="/images/team.webp"
+          src="/images/about-team.webp"
           alt="Our team planning a cleaning job"
           sizes="(min-width: 1280px) 1200px, 100vw"
-          className="mx-auto aspect-[4/3] max-w-6xl rounded-[2rem] sm:aspect-[21/9]"
+          className="mx-auto aspect-[2/1] max-w-6xl rounded-[2rem]"
         />
       </section>
 

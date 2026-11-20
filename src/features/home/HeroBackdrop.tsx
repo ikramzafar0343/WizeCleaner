@@ -10,14 +10,15 @@ const BUBBLES = [
 /** Soft clouds and slow soap bubbles behind the hero copy. */
 export function HeroBackdrop() {
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="animate-drift absolute -left-[10%] top-[8%] h-64 w-[55%] rounded-full bg-white/70 blur-3xl" />
-      <div className="animate-drift absolute -right-[12%] top-[22%] h-72 w-[50%] rounded-full bg-white/60 blur-3xl [animation-delay:-6s]" />
-      <div className="animate-drift absolute left-[30%] top-[46%] h-56 w-[40%] rounded-full bg-lime-soft/70 blur-3xl [animation-delay:-11s]" />
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden [contain:paint]">
+      {/* Soft radial fills — no animated blur filters (those thrash paint while scrolling). */}
+      <div className="animate-drift absolute -left-[10%] top-[8%] h-64 w-[55%] rounded-full bg-[radial-gradient(circle,rgb(255_255_255/0.75)_0%,transparent_70%)]" />
+      <div className="animate-drift absolute -right-[12%] top-[22%] h-72 w-[50%] rounded-full bg-[radial-gradient(circle,rgb(255_255_255/0.65)_0%,transparent_70%)] [animation-delay:-6s]" />
+      <div className="animate-drift absolute left-[30%] top-[46%] h-56 w-[40%] rounded-full bg-[radial-gradient(circle,rgb(238_249_212/0.75)_0%,transparent_70%)] [animation-delay:-11s]" />
       {BUBBLES.map((b) => (
         <span
           key={b.left}
-          className="absolute bottom-[38%] rounded-full border border-white/80 bg-white/30 shadow-[inset_-2px_-2px_6px_rgb(255_255_255/0.9)]"
+          className="absolute bottom-[38%] rounded-full border border-white/80 bg-white/30"
           style={{
             left: b.left,
             width: b.size,

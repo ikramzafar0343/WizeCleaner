@@ -5,7 +5,7 @@ Static, serverless Next.js site (App Router). No backend, no database, no forms 
 ## Pages
 - `/` Home: hero with squeegee wipe, services, before/after slider, process, why us, FAQ
 - `/services` all services
-- `/services/[slug]` 8 service detail pages (pre-rendered at build)
+- `/services/[slug]` service detail pages (pre-rendered at build)
 - `/about`, `/contact`, custom 404, `sitemap.xml`, `robots.txt`, Open Graph image
 
 ## Change business details
@@ -13,7 +13,9 @@ Edit **one file**: `src/shared/config/site.ts` — name, WhatsApp number (digits
 Service text lives in `src/features/services/data.ts`.
 
 ## Replace images
-Put new photos in `public/images/` with the same file names (any size, WebP/JPG). For real before/after photos pass `beforeSrc` to `<BeforeAfter />` — until then the "before" side is a staged dusty version of the same photo.
+Generate checklist (exact names + pixel sizes): **[`public/images/ASSET-LIST.md`](public/images/ASSET-LIST.md)**.
+
+Drop files straight into `public/images/` — e.g. `home-hero-after.webp`, `service-hygiene-solutions-before.webp`. Each slot has a unique SEO-friendly name. Overwrite the demo placeholders with your generated photos.
 
 ## Run locally
 ```bash

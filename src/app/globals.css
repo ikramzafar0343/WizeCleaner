@@ -38,6 +38,10 @@
     font-size: 1rem;
     line-height: 1.55;
   }
+  html.preloader-lock,
+  html.preloader-lock body {
+    overflow: hidden;
+  }
   h1,
   h2,
   h3 {
@@ -149,6 +153,36 @@
 }
 .shine:hover::after {
   animation: shine 0.9s var(--ease-out-soft);
+}
+
+@keyframes preloader-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 0.92;
+  }
+}
+
+@keyframes preloader-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.preloader-logo {
+  animation: preloader-breathe 1.35s ease-in-out infinite;
+}
+
+.preloader-bar {
+  width: 40%;
+  animation: preloader-sweep 0.95s var(--ease-out-soft) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

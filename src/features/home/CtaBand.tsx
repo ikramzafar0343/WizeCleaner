@@ -7,7 +7,7 @@ type Props = { title?: string; text?: string; service?: string };
 /** Closing call to action — lime panel with playful soap swirls. */
 export function CtaBand({
   title = "Tell us what needs cleaning",
-  text = `Send one WhatsApp message with a few photos. We reply with a time slot for anywhere in ${site.city}.`,
+  text = `Send one WhatsApp message with a few photos. We reply with a time slot across ${site.serviceRegion}.`,
   service,
 }: Props) {
   return (

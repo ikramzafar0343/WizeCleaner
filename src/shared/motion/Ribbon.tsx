@@ -5,14 +5,24 @@ import { cn } from "@/shared/lib/cn";
 import { gsap, MOTION_OK, ScrollTrigger, useGSAP } from "./gsap";
 
 const DEFAULT_WORDS = [
-  "Deep Cleaning",
-  "Post-Construction",
-  "Move-In / Out",
-  "Janitorial",
-  "Sofa & Carpet",
+  "5 Marla Deep Clean",
+  "10 Marla Deep Clean",
+  "1 Kanal Deep Clean",
+  "Sofa Cleaning",
+  "Kitchen Deep Clean",
+  "Washroom Deep Clean",
+  "Water Tank Cleaning",
+  "Commercial Cleaning",
+  "Hygiene Solutions",
+  "Carpet & Upholstery",
+  "Steam Cleaning",
+  "High-Rise Windows",
   "Window & Glass",
-  "Marble & Tile",
-  "Solar Panels",
+  "Pressure Washing",
+  "Pest Control",
+  "Disinfecting Fogging",
+  "Floor Cleaning",
+  "Tiles Cleaning",
 ];
 
 type Props = {
@@ -47,16 +57,10 @@ export function Ribbon({ words = DEFAULT_WORDS, className, scrollRibbonStart = f
           start: "top bottom",
           end: "bottom top",
           onUpdate: (self) => {
-            const direction = self.direction;
+            // Direct timeScale — no per-frame tweens competing with Lenis.
             const boost = Math.min(1.35, 1 + Math.abs(self.getVelocity()) / 1400);
-            gsap.to(loops, {
-              timeScale: direction * boost,
-              duration: 0.5,
-              overwrite: true,
-              onComplete: () => {
-                gsap.to(loops, { timeScale: direction, duration: 2, overwrite: true });
-              },
-            });
+            const scale = self.direction * boost;
+            for (const loop of loops) loop.timeScale(scale);
           },
         });
         return () => {

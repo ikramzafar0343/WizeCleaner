@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
   experimental: { optimizePackageImports: ["lucide-react", "gsap", "motion"] },
   images: {
     formats: ["image/avif", "image/webp"],
-    qualities: [60, 75],
-    deviceSizes: [390, 640, 828, 1080, 1440, 1920],
+    qualities: [75, 90],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2048],
+    imageSizes: [64, 96, 128, 256, 384],
   },
   async headers() {
     return [
@@ -24,8 +25,9 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // Revalidate so replaced assets with the same filename show up (dev + fresh deploys).
         source: "/images/:path*",
-        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+        headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }],
       },
     ];
   },

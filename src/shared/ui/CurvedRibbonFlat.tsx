@@ -26,13 +26,14 @@ export default function CurvedRibbonFlat({ className, ...props }: SVGProps<SVGSV
         </linearGradient>
       </defs>
 
+      {/* Soft underglow (static) — replaces CSS drop-shadow so scroll paint stays cheap. */}
       <path
         d={RIBBON_D}
         stroke="#0f3d2e"
-        strokeWidth={58}
+        strokeWidth={62}
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity="0.18"
+        opacity="0.16"
         vectorEffect="non-scaling-stroke"
       />
       <path

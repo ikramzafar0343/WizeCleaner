@@ -3,6 +3,7 @@
 import { Plus } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useId, useState } from "react";
+import { site } from "@/shared/config/site";
 import { cn } from "@/shared/lib/cn";
 import { Reveal } from "@/shared/motion/Reveal";
 import { SectionHead } from "@/shared/ui/SectionHead";
@@ -12,7 +13,10 @@ export type FaqItem = { q: string; a: string };
 export const GENERAL_FAQS: readonly FaqItem[] = [
   { q: "How do I book a cleaning?", a: "Send us a WhatsApp message with the service, your area and a few photos. We reply with a time slot and quote." },
   { q: "Do you bring your own equipment?", a: "Yes. The crew brings all machines, tools and cleaning products needed for the job." },
-  { q: "Which areas do you cover?", a: "We cover the main areas of the city. Message us your location and we will confirm." },
+  {
+    q: "Which areas do you cover?",
+    a: `We cover ${site.areas.join(", ")}, plus major towns nearby. Message us your location and we will confirm.`,
+  },
   { q: "Are your products safe for kids and pets?", a: "We use gentle, safe products by default and tell you if a stronger product is needed." },
   { q: "What if I am not happy with something?", a: "Point it out during the walk-through and we fix it on the spot." },
 ];

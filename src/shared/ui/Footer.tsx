@@ -1,19 +1,19 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, Phone } from "lucide-react";
 import Link from "next/link";
-import { services } from "@/features/services/data";
 import { nav, site } from "@/shared/config/site";
 import { whatsappLink } from "@/shared/lib/whatsapp";
 import { Logo } from "./Logo";
+import { FooterServicesSelect } from "./ServicesDropdown";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative z-10 frame mb-3 mt-3 overflow-hidden bg-forest text-white md:mb-4">
+    <footer className="relative z-10 frame mb-3 mt-3 overflow-x-clip bg-forest text-white md:mb-4">
       <div className="container-site grid gap-12 pb-10 pt-16 text-center md:grid-cols-4 md:pt-20 md:text-left">
         <div className="flex flex-col items-center gap-5 md:items-start">
           <Logo light />
-          <p className="max-w-xs text-sm text-white/70">{site.tagline} in {site.city}.</p>
+          <p className="max-w-xs text-sm text-white/70">{site.tagline} across {site.serviceRegion}.</p>
           <a
             href={whatsappLink()}
             target="_blank"
@@ -37,17 +37,8 @@ export function Footer() {
           </ul>
         </div>
 
-        <div>
-          <h2 className="mb-4 text-sm font-semibold text-lime">Services</h2>
-          <ul className="space-y-2.5 text-sm text-white/75">
-            {services.map((s) => (
-              <li key={s.slug}>
-                <Link href={`/services/${s.slug}`} className="transition-colors hover:text-white">
-                  {s.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col items-center md:items-start">
+          <FooterServicesSelect />
         </div>
 
         <div>
@@ -62,23 +53,15 @@ export function Footer() {
               <a href={`mailto:${site.email}`} className="break-all hover:text-white">{site.email}</a>
             </li>
             <li className="flex items-start justify-center gap-2 md:justify-start">
-              <MapPin aria-hidden className="mt-0.5 size-4 shrink-0 text-lime" />
-              <span>{site.address}</span>
+              <Clock aria-hidden className="mt-0.5 size-4 shrink-0 text-lime" />
+              <span>24/7</span>
             </li>
-            {site.hours.map((h) => (
-              <li key={h.days} className="flex items-start justify-center gap-2 md:justify-start">
-                <Clock aria-hidden className="mt-0.5 size-4 shrink-0 text-lime" />
-                <span>
-                  {h.days}: {h.time}
-                </span>
-              </li>
-            ))}
           </ul>
         </div>
       </div>
 
-      <div aria-hidden className="relative select-none overflow-hidden">
-        <p className="text-center text-[22vw] font-semibold leading-[0.8] tracking-[-0.06em] text-white/[0.07] md:text-[19vw]">
+      <div aria-hidden className="relative select-none overflow-hidden px-4 py-6">
+        <p className="whitespace-nowrap text-center text-[clamp(2rem,8.5vw,8rem)] font-semibold leading-none tracking-[-0.04em] text-white/[0.07]">
           {site.name}
         </p>
       </div>
@@ -87,7 +70,7 @@ export function Footer() {
         <p>
           © {year} {site.legalName}. All rights reserved.
         </p>
-        <p>Serving {site.city} and nearby areas</p>
+        <p>Serving {site.serviceRegion}</p>
       </div>
     </footer>
   );

@@ -7,9 +7,12 @@ export const site = {
   legalName: "WizeCleaner Cleaning Services",
   tagline: "Professional cleaning for homes, offices and sites",
   description:
-    "Deep cleaning, post-construction, move-in/out, sofa and carpet, glass, marble and solar panel cleaning. Message us on WhatsApp for a quick quote.",
+    "House deep cleaning, sofa, kitchen, washroom, floors, tiles, windows, commercial cleaning, pest control and more across Lahore, Islamabad and major Punjab cities. Message us on WhatsApp for a quick quote.",
   url: "https://www.example.com",
+  /** Business base / address locality. */
   city: "Lahore",
+  /** Short phrase for coverage copy across the site. */
+  serviceRegion: "Lahore, Islamabad and major Punjab cities",
   country: "PK",
   /** International format, digits only — used for wa.me links. */
   whatsapp: "923000000000",
@@ -20,7 +23,8 @@ export const site = {
     { days: "Monday – Saturday", time: "8:00 am – 8:00 pm" },
     { days: "Sunday", time: "On request" },
   ],
-  areas: ["DHA", "Gulberg", "Johar Town", "Bahria Town", "Model Town", "Cantt"],
+  /** Cities we cover (plus major towns nearby). */
+  areas: ["Lahore", "Islamabad", "Sialkot", "Faisalabad", "Gujranwala", "Sheikhupura"],
   social: {
     instagram: "https://instagram.com/",
     facebook: "https://facebook.com/",

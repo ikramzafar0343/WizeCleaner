@@ -8,10 +8,34 @@ import { SectionHead } from "@/shared/ui/SectionHead";
 import { BeforeAfter } from "./BeforeAfter";
 
 const SCENES = [
-  { id: "living", label: "Living room", src: "/images/hero-living.webp", alt: "Living room" },
-  { id: "lounge", label: "Lounge", src: "/images/deep-cleaning.webp", alt: "Lounge corner" },
-  { id: "office", label: "Office desk", src: "/images/janitorial.webp", alt: "Office workspace" },
-  { id: "floor", label: "Marble floor", src: "/images/marble-floor.webp", alt: "Marble floor" },
+  {
+    id: "living",
+    label: "Living room",
+    src: "/images/home-showcase-living-after.webp",
+    beforeSrc: "/images/home-showcase-living-before.webp",
+    alt: "Living room",
+  },
+  {
+    id: "lounge",
+    label: "Lounge",
+    src: "/images/home-showcase-lounge-after.webp",
+    beforeSrc: "/images/home-showcase-lounge-before.webp",
+    alt: "Lounge corner",
+  },
+  {
+    id: "office",
+    label: "Office desk",
+    src: "/images/home-showcase-office-after.webp",
+    beforeSrc: "/images/home-showcase-office-before.webp",
+    alt: "Office workspace",
+  },
+  {
+    id: "floor",
+    label: "Marble floor",
+    src: "/images/home-showcase-floor-after.webp",
+    beforeSrc: "/images/home-showcase-floor-before.webp",
+    alt: "Marble floor",
+  },
 ] as const;
 
 /** Tabbed before/after comparison — the proof section of the home page. */
@@ -52,7 +76,7 @@ export function BeforeAfterShowcase() {
         </Reveal>
 
         <Reveal className="mx-auto mt-8 max-w-5xl">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-mist-2 sm:aspect-[16/9]">
+          <div className="relative aspect-video overflow-hidden rounded-[2rem] bg-mist-2">
             <AnimatePresence mode="wait">
               <motion.div
                 key={scene.id}
@@ -62,7 +86,12 @@ export function BeforeAfterShowcase() {
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0"
               >
-                <BeforeAfter src={scene.src} alt={scene.alt} className="h-full w-full" />
+                <BeforeAfter
+                  src={scene.src}
+                  beforeSrc={scene.beforeSrc}
+                  alt={scene.alt}
+                  className="h-full w-full"
+                />
               </motion.div>
             </AnimatePresence>
           </div>

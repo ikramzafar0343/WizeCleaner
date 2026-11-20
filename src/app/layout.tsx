@@ -7,6 +7,7 @@ import { ScrollWiper } from "@/shared/motion/ScrollWiper";
 import { FloatingWhatsApp } from "@/shared/ui/FloatingWhatsApp";
 import { Footer } from "@/shared/ui/Footer";
 import { Header } from "@/shared/ui/Header";
+import { PagePreloader } from "@/shared/ui/PagePreloader";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -40,7 +41,7 @@ const jsonLd = {
   telephone: `+${site.whatsapp}`,
   email: site.email,
   address: { "@type": "PostalAddress", streetAddress: site.address, addressLocality: site.city, addressCountry: site.country },
-  areaServed: site.areas.map((a) => `${a}, ${site.city}`),
+  areaServed: site.areas.map((a) => a),
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -55,8 +56,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <MotionProvider>
+          <PagePreloader />
           <Header />
-          <main id="main" className="relative">
+          <main id="main" className="relative isolate">
             <ScrollWiper />
             <div className="relative z-10">{children}</div>
           </main>

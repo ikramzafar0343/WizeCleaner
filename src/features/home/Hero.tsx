@@ -42,7 +42,7 @@ export function Hero() {
       <div className="container-site relative flex flex-col items-center pt-32 text-center md:pt-44">
         <span data-fade className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/70 px-3.5 py-1.5 text-sm text-forest backdrop-blur">
           <Sparkles aria-hidden className="size-4 text-moss" />
-          Professional cleaning in {site.city}
+          Professional cleaning across {site.serviceRegion}
         </span>
         <h1 className="max-w-4xl text-[2.7rem] text-forest sm:text-6xl md:text-[5.2rem]">
           {HEADLINE.map((w, i) => (
@@ -72,11 +72,12 @@ export function Hero() {
       <div className="container-site relative mt-14 md:mt-20">
         <div data-media className="relative mx-auto max-w-5xl">
           <BeforeAfter
-            src="/images/hero-living.webp"
+            src="/images/home-hero-after.webp"
+            beforeSrc="/images/home-hero-before.webp"
             alt="Bright, freshly cleaned living space"
             priority
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            className="aspect-[4/3] rounded-t-[1.75rem] shadow-[0_-20px_60px_-30px_rgb(15_61_46/0.45)] sm:aspect-[16/9] md:rounded-t-[2.25rem]"
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            className="aspect-video rounded-t-[1.75rem] shadow-[0_-20px_60px_-30px_rgb(15_61_46/0.45)] md:rounded-t-[2.25rem]"
           />
 
           {chips.map(({ icon: Icon, title, note, pos }) => (

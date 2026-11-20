@@ -11,7 +11,7 @@ import { WhatsAppIcon } from "@/shared/ui/WhatsAppIcon";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Message ${site.name} on WhatsApp for a quick cleaning quote in ${site.city}.`,
+  description: `Message ${site.name} on WhatsApp for a quick cleaning quote across ${site.serviceRegion}.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -63,14 +63,16 @@ export default function ContactPage() {
 
           <div className="flex flex-col items-center rounded-[2rem] bg-white p-8 text-center md:col-span-3">
             <MapPin aria-hidden className="size-6 text-moss" />
-            <h3 className="mt-4 text-lg text-forest">Areas we cover in {site.city}</h3>
+            <h3 className="mt-4 text-lg text-forest">Cities we cover</h3>
             <ul className="mt-5 flex flex-wrap justify-center gap-2">
               {site.areas.map((a) => (
                 <li key={a} className="rounded-full bg-mist px-4 py-2 text-sm font-semibold text-forest">
                   {a}
                 </li>
               ))}
-              <li className="rounded-full border border-dashed border-line px-4 py-2 text-sm text-muted">and nearby</li>
+              <li className="rounded-full border border-dashed border-line px-4 py-2 text-sm text-muted">
+                and major towns nearby
+              </li>
             </ul>
             <p className="mt-5 text-sm text-muted">{site.address}</p>
           </div>

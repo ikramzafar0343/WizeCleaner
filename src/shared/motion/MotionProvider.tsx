@@ -12,7 +12,14 @@ export function MotionProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const mm = gsap.matchMedia();
     mm.add(DESKTOP_MOTION, () => {
-      const lenis = new Lenis({ autoRaf: false, duration: 1.1, smoothWheel: true });
+      // Lerp (not long duration) keeps wheel response snappy while still smooth.
+      const lenis = new Lenis({
+        autoRaf: false,
+        lerp: 0.12,
+        smoothWheel: true,
+        wheelMultiplier: 1.05,
+        touchMultiplier: 1.2,
+      });
       const tick = (time: number) => lenis.raf(time * 1000);
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add(tick);

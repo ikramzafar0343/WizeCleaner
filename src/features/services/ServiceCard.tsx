@@ -18,14 +18,14 @@ export function ServiceCard({ service, featured = false }: { service: Service; f
           : "bg-white shadow-[0_2px_0_rgb(15_61_46/0.04)] hover:shadow-[0_24px_50px_-30px_rgb(15_61_46/0.45)]",
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[1.35rem]">
+      <div className="relative aspect-video overflow-hidden rounded-[1.35rem]">
         <Image
           src={service.image}
           alt=""
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          quality={60}
-          className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-[1.07]"
+          quality={90}
+          className="object-cover object-center transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-[1.04]"
         />
         <span
           className={cn(

@@ -10,7 +10,7 @@ import { WhatsAppCta } from "@/shared/ui/WhatsAppCta";
 
 export const metadata: Metadata = {
   title: "Cleaning Services",
-  description: `Deep cleaning, post-construction, move-in/out, janitorial, sofa and carpet, glass, marble and solar panel cleaning in ${site.city}.`,
+  description: `House deep cleaning, sofa, kitchen, washroom, floor and tiles cleaning, windows, commercial, pest control and more across ${site.serviceRegion}.`,
   alternates: { canonical: "/services" },
 };
 

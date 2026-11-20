@@ -22,6 +22,7 @@ function pageTop(el: Element) {
 
 /**
  * Centered brand ribbon: draws/erases with scroll (scrubbed both ways).
+ * Absolute in-flow shell — positioned only on refresh, never per scroll frame.
  */
 export function ScrollWiper() {
   const pathname = usePathname();
@@ -66,17 +67,24 @@ export function ScrollWiper() {
 
     const length = path.getTotalLength();
     const edgeLen = edge?.getTotalLength() ?? length;
-    gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
-    if (edge) gsap.set(edge, { strokeDasharray: edgeLen, strokeDashoffset: edgeLen });
+    const setPath = gsap.quickSetter(path, "strokeDashoffset");
+    const setEdge = edge ? gsap.quickSetter(edge, "strokeDashoffset") : null;
+
+    path.style.strokeDasharray = `${length}`;
+    setPath(length);
+    if (edge) {
+      edge.style.strokeDasharray = `${edgeLen}`;
+      setEdge?.(edgeLen);
+    }
 
     const placeShell = () => {
-      const start = pageTop(startEl) + startEl.offsetHeight;
-      const end = pageTop(endEl);
-      const span = Math.max(1, end - start);
+      const parent = wrap.offsetParent as HTMLElement | null;
+      const parentTop = parent ? pageTop(parent) : 0;
+      const start = pageTop(startEl) + startEl.offsetHeight - parentTop;
+      const end = pageTop(endEl) - parentTop;
       wrap.style.visibility = "visible";
-      wrap.style.height = `${span}px`;
-      // translate3d stays smoother than rewriting `top` every frame
-      wrap.style.transform = `translate3d(0, ${start - window.scrollY}px, 0)`;
+      wrap.style.top = `${start}px`;
+      wrap.style.height = `${Math.max(1, end - start)}px`;
     };
 
     placeShell();
@@ -86,28 +94,21 @@ export function ScrollWiper() {
       start: "bottom top",
       endTrigger: endEl,
       end: "top top",
-      scrub: 0.5,
+      scrub: true,
       invalidateOnRefresh: true,
-      onUpdate: (self) => {
-        placeShell();
-        const p = self.progress; // 0→1 down, 1→0 up
-        gsap.set(path, { strokeDashoffset: length * (1 - p) });
-        if (edge) gsap.set(edge, { strokeDashoffset: edgeLen * (1 - p) });
-      },
       onRefresh: placeShell,
+      onUpdate: (self) => {
+        const p = self.progress;
+        setPath(length * (1 - p));
+        setEdge?.(edgeLen * (1 - p));
+      },
     });
-
-    const onScroll = () => placeShell();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
 
     const refreshId = window.setTimeout(() => ScrollTrigger.refresh(), 200);
 
     return () => {
       window.clearTimeout(refreshId);
       st.kill();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
     };
   }, [reduceMotion, pathname]);
 
@@ -127,19 +128,14 @@ export function ScrollWiper() {
     <div
       ref={shell}
       aria-hidden
-      className="pointer-events-none fixed inset-x-0 top-0 z-0 overflow-hidden will-change-transform"
-      style={{ height: 0 }}
+      className="pointer-events-none absolute inset-x-0 -z-10 overflow-hidden [contain:paint]"
+      style={{ top: 0, height: 0, visibility: "hidden" }}
     >
       <div
         ref={stage}
         className="absolute left-1/2 top-0 h-full w-[min(22vw,11rem)] -translate-x-1/2 opacity-[0.88]"
       >
-        <CurvedRibbonFlat
-          className="h-full w-full drop-shadow-[0_12px_28px_rgb(15_61_46/0.18)]"
-          preserveAspectRatio="xMidYMid slice"
-          width="100%"
-          height="100%"
-        />
+        <CurvedRibbonFlat className="h-full w-full" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" />
       </div>
     </div>
   );
