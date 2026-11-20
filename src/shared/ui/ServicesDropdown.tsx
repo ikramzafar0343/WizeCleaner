@@ -86,7 +86,7 @@ export function NavServicesDropdown({ active }: { active: boolean }) {
 }
 
 /** Mobile accordion list of services. */
-export function MobileServicesList({ onNavigate }: { onNavigate?: () => void }) {
+export function MobileServicesList({ onNavigate }: { onNavigate: () => void }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const servicesActive = pathname.startsWith("/services");
