@@ -15,8 +15,8 @@ export const site = {
   serviceRegion: "Lahore, Islamabad and major Punjab cities",
   country: "PK",
   /** International format, digits only — used for wa.me links. */
-  whatsapp: "923000000000",
-  phoneDisplay: "+92 300 0000000",
+  whatsapp: "923025080203",
+  phoneDisplay: "0302 5080203",
   email: "hello@example.com",
   address: "Your street address, Lahore",
   hours: [

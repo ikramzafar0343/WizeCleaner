@@ -123,10 +123,10 @@ export function PagePreloader() {
           <Image
             src="/images/brand/logo.png"
             alt={site.name}
-            width={220}
-            height={198}
+            width={440}
+            height={396}
             priority
-            className="h-24 w-auto object-contain sm:h-28"
+            className="h-48 w-auto object-contain sm:h-56"
           />
         </div>
         <span className="sr-only">Loading {site.name}</span>

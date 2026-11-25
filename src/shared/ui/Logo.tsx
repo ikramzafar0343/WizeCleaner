@@ -30,9 +30,9 @@ export function Logo({ light = false }: { light?: boolean }) {
         <Image
           src="/images/brand/logo.png"
           alt={site.name}
-          width={160}
-          height={144}
-          className={cn("h-11 w-auto object-contain md:h-12", light && "h-12 md:h-14")}
+          width={180}
+          height={162}
+          className={cn("h-12 w-auto object-contain md:h-14", light && "h-14 md:h-16")}
           priority
         />
       </span>

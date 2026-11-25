@@ -64,13 +64,19 @@ export default function ContactPage() {
           <div className="flex flex-col items-center rounded-[2rem] bg-white p-8 text-center md:col-span-3">
             <MapPin aria-hidden className="size-6 text-moss" />
             <h3 className="mt-4 text-lg text-forest">Cities we cover</h3>
-            <ul className="mt-5 flex flex-wrap justify-center gap-2">
+            <ul className="mt-6 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
               {site.areas.map((a) => (
-                <li key={a} className="rounded-full bg-mist px-4 py-2 text-sm font-semibold text-forest">
-                  {a}
+                <li
+                  key={a}
+                  className="flex flex-col items-center gap-2 rounded-2xl border border-transparent bg-mist px-4 py-5 transition-colors hover:border-moss/30 hover:bg-lime-soft"
+                >
+                  <span className="grid size-9 place-items-center rounded-xl bg-white text-moss shadow-sm">
+                    <MapPin aria-hidden className="size-4" />
+                  </span>
+                  <span className="text-sm font-semibold text-forest">{a}</span>
                 </li>
               ))}
-              <li className="rounded-full border border-dashed border-line px-4 py-2 text-sm text-muted">
+              <li className="col-span-2 flex items-center justify-center rounded-2xl border border-dashed border-line px-4 py-4 text-sm text-muted sm:col-span-3">
                 and major towns nearby
               </li>
             </ul>

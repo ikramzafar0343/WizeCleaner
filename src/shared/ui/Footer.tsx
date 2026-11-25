@@ -60,8 +60,11 @@ export function Footer() {
         </div>
       </div>
 
-      <div aria-hidden className="relative select-none overflow-hidden px-4 py-6">
-        <p className="whitespace-nowrap text-center text-[clamp(2rem,8.5vw,8rem)] font-semibold leading-none tracking-[-0.04em] text-white/[0.07]">
+      <div aria-hidden className="relative w-full select-none overflow-hidden px-2 py-5 sm:px-3 sm:py-6">
+        <p
+          className="w-full whitespace-nowrap text-center font-semibold leading-none tracking-[-0.05em] text-white/[0.07]"
+          style={{ fontSize: "clamp(2.5rem, calc((100vw - 2.5rem) / 6.85), 22rem)" }}
+        >
           {site.name}
         </p>
       </div>
