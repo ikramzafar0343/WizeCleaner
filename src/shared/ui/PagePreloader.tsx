@@ -32,6 +32,10 @@ export function PagePreloader() {
     clearTimers();
     setVisible(true);
     setFading(false);
+    // Reset scroll under the overlay so the next page never opens on the footer.
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     const fadeAt = window.setTimeout(() => setFading(true), holdMs);
     const doneAt = window.setTimeout(() => {
       setVisible(false);
