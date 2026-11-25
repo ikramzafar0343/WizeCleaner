@@ -3,11 +3,21 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/features/home/CtaBand";
 import { Faq } from "@/features/home/Faq";
 import { site } from "@/shared/config/site";
+import { whatsappLink } from "@/shared/lib/whatsapp";
 import { Reveal } from "@/shared/motion/Reveal";
 import { Ribbon } from "@/shared/motion/Ribbon";
 import { PageHero } from "@/shared/ui/PageHero";
 import { WhatsAppCta } from "@/shared/ui/WhatsAppCta";
 import { WhatsAppIcon } from "@/shared/ui/WhatsAppIcon";
+
+const cityCardStyles = [
+  { card: "bg-forest text-white hover:bg-forest-2", icon: "bg-lime text-forest" },
+  { card: "bg-lime text-forest hover:bg-lime-2", icon: "bg-forest text-lime" },
+  { card: "bg-moss text-white hover:bg-forest", icon: "bg-white text-moss" },
+  { card: "bg-sky text-forest hover:bg-sky-2", icon: "bg-forest text-sky" },
+  { card: "bg-lime-soft text-forest hover:bg-lime", icon: "bg-moss text-white" },
+  { card: "bg-forest-2 text-lime hover:bg-forest", icon: "bg-lime text-forest" },
+] as const;
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -65,17 +75,27 @@ export default function ContactPage() {
             <MapPin aria-hidden className="size-6 text-moss" />
             <h3 className="mt-4 text-lg text-forest">Cities we cover</h3>
             <ul className="mt-6 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3">
-              {site.areas.map((a) => (
-                <li
-                  key={a}
-                  className="flex flex-col items-center gap-2 rounded-2xl border border-transparent bg-mist px-4 py-5 transition-colors hover:border-moss/30 hover:bg-lime-soft"
-                >
-                  <span className="grid size-9 place-items-center rounded-xl bg-white text-moss shadow-sm">
-                    <MapPin aria-hidden className="size-4" />
-                  </span>
-                  <span className="text-sm font-semibold text-forest">{a}</span>
-                </li>
-              ))}
+              {site.areas.map((a, i) => {
+                const style = cityCardStyles[i % cityCardStyles.length]!;
+                return (
+                  <li key={a}>
+                    <a
+                      href={whatsappLink(`cleaning in ${a}`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex min-h-[7.5rem] flex-col items-center justify-center gap-2.5 rounded-2xl px-4 py-5 text-center shadow-[0_10px_28px_-18px_rgb(15_61_46/0.55)] transition-colors ${style.card}`}
+                    >
+                      <span className={`grid size-10 place-items-center rounded-xl ${style.icon}`}>
+                        <MapPin aria-hidden className="size-4" />
+                      </span>
+                      <span className="text-sm font-bold tracking-tight">{a}</span>
+                      <span className="text-[0.7rem] font-semibold uppercase tracking-[0.08em] opacity-80">
+                        Book on WhatsApp
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
               <li className="col-span-2 flex items-center justify-center rounded-2xl border border-dashed border-line px-4 py-4 text-sm text-muted sm:col-span-3">
                 and major towns nearby
               </li>
